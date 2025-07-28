@@ -6,7 +6,7 @@ public class BookTabButton : MonoBehaviour
     public GameObject pageToShow;         // нужная страница
     public Sprite activeSprite;           // "включённая" вкладка
     public Sprite inactiveSprite;         // обычная вкладка
-    public Image targetImage;             // Image из инспектора
+    public Image targetImage;             // чей Image меняем (например, фон кнопки)
     public TabGroup tabGroup;             // ссылка на общий контроллер
 
     private void Awake()
