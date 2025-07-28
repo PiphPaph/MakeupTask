@@ -570,6 +570,7 @@ GameObject:
   - component: {fileID: 144629376}
   - component: {fileID: 144629375}
   - component: {fileID: 144629374}
+  - component: {fileID: 144629377}
   m_Layer: 5
   m_Name: TabPowder
   m_TagString: Untagged
@@ -679,6 +680,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 144629372}
   m_CullTransparentMesh: 1
+--- !u!114 &144629377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144629372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7bd69b8070eb3e44aeccaf3cf22196f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pageToShow: {fileID: 1905059815}
+  activeSprite: {fileID: 21300000, guid: b502393a9e43c1a44a5c653895c55a99, type: 3}
+  inactiveSprite: {fileID: 21300000, guid: 0133453cb161c424ea67276683382faf, type: 3}
+  targetImage: {fileID: 144629375}
+  tabGroup: {fileID: 1003479591}
 --- !u!1 &159772586
 GameObject:
   m_ObjectHideFlags: 0
@@ -4105,6 +4123,7 @@ GameObject:
   - component: {fileID: 837513532}
   - component: {fileID: 837513531}
   - component: {fileID: 837513530}
+  - component: {fileID: 837513533}
   m_Layer: 5
   m_Name: TabEyeShadow
   m_TagString: Untagged
@@ -4214,6 +4233,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 837513528}
   m_CullTransparentMesh: 1
+--- !u!114 &837513533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 837513528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7bd69b8070eb3e44aeccaf3cf22196f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pageToShow: {fileID: 2003773557}
+  activeSprite: {fileID: 21300000, guid: 908cc972a3d0ab54cb4e10750946d504, type: 3}
+  inactiveSprite: {fileID: 21300000, guid: 98d8ddea74e2c5c438e43b3d989564c6, type: 3}
+  targetImage: {fileID: 837513531}
+  tabGroup: {fileID: 1003479591}
 --- !u!1 &853712728
 GameObject:
   m_ObjectHideFlags: 0
@@ -5774,6 +5810,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 976373662}
   m_CullTransparentMesh: 1
+--- !u!1 &1003479590
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1003479592}
+  - component: {fileID: 1003479591}
+  m_Layer: 0
+  m_Name: TabGroup
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1003479591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003479590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 666a263e69e66644788951205a94eb54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tabButtons:
+  - {fileID: 1241225109}
+  - {fileID: 837513533}
+  - {fileID: 1884827736}
+  - {fileID: 144629377}
+--- !u!4 &1003479592
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003479590}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 151.08792, y: 400.61127, z: -8.832319}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1011111616
 GameObject:
   m_ObjectHideFlags: 0
@@ -7028,6 +7113,7 @@ GameObject:
   - component: {fileID: 1241225108}
   - component: {fileID: 1241225107}
   - component: {fileID: 1241225106}
+  - component: {fileID: 1241225109}
   m_Layer: 5
   m_Name: TabBlush
   m_TagString: Untagged
@@ -7137,6 +7223,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1241225104}
   m_CullTransparentMesh: 1
+--- !u!114 &1241225109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1241225104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7bd69b8070eb3e44aeccaf3cf22196f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pageToShow: {fileID: 956106580}
+  activeSprite: {fileID: 21300000, guid: 62902aea50a4ccc4b89ee69c5087c7c1, type: 3}
+  inactiveSprite: {fileID: 21300000, guid: 3946945e3031f394e8f1ca5b50fc9c02, type: 3}
+  targetImage: {fileID: 1241225107}
+  tabGroup: {fileID: 1003479591}
 --- !u!1 &1253782890
 GameObject:
   m_ObjectHideFlags: 0
@@ -10228,6 +10331,7 @@ GameObject:
   - component: {fileID: 1884827735}
   - component: {fileID: 1884827734}
   - component: {fileID: 1884827733}
+  - component: {fileID: 1884827736}
   m_Layer: 5
   m_Name: TabLipstick
   m_TagString: Untagged
@@ -10337,6 +10441,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1884827731}
   m_CullTransparentMesh: 1
+--- !u!114 &1884827736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884827731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7bd69b8070eb3e44aeccaf3cf22196f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pageToShow: {fileID: 483467256}
+  activeSprite: {fileID: 21300000, guid: 85106d8d709c84e43bfbd5162cdcdd41, type: 3}
+  inactiveSprite: {fileID: 21300000, guid: 2000dce941c28ad4097a262fa125eb5d, type: 3}
+  targetImage: {fileID: 1884827734}
+  tabGroup: {fileID: 1003479591}
 --- !u!1 &1888064166
 GameObject:
   m_ObjectHideFlags: 0
@@ -11869,3 +11990,4 @@ SceneRoots:
   - {fileID: 619394802}
   - {fileID: 1794542159}
   - {fileID: 436124942}
+  - {fileID: 1003479592}
