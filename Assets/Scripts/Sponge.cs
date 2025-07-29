@@ -8,7 +8,7 @@ public class SpongeTool : MakeupTool
 
     public override void ApplyEffect()
     {
-        // Ничего не делаем тут, всё произойдёт сразу после SetToolInHand
+
     }
 
     public override void OnToolSelected()
@@ -25,7 +25,6 @@ public class SpongeTool : MakeupTool
 
         handController.SetToolInHand(this, () =>
         {
-            // После прибытия в middle position — сразу чистим
             ClearMakeup();
             StartCoroutine(CleanupAndReturn());
         });
@@ -42,10 +41,8 @@ public class SpongeTool : MakeupTool
 
     private IEnumerator CleanupAndReturn()
     {
-        // Возвращаем спонж
         yield return handController.ReturnToolWithHand(this);
-
-        // Возвращаем руку
+        
         yield return handController.MoveToDefaultPosition();
     }
 }

@@ -9,7 +9,7 @@ public class BrushTool : MakeupTool
     private bool waitingForColor = false;
     private bool draggingEnabled = false;
     
-    private static GameObject currentEffectSprite; // новый
+    private static GameObject currentEffectSprite;
 
     public override void OnToolSelected()
     {
@@ -18,8 +18,7 @@ public class BrushTool : MakeupTool
             handController.ResetHandAndTool(this);
             return;
         }
-
-        // Если в руке другой инструмент — заменить
+        
         if (handController.currentTool != null && handController.currentTool != this)
         {
             StartCoroutine(SwapAndSelect(handController.currentTool));
@@ -58,8 +57,7 @@ public class BrushTool : MakeupTool
     private IEnumerator AnimateBrushAtColor()
     {
         yield return handController.MoveToPosition(selectedColorTransform.position);
-
-        // Штриховка
+        
         Vector3 start = handController.transform.position;
         float time = 0;
         float duration = 0.5f;
@@ -90,7 +88,6 @@ public class BrushTool : MakeupTool
 
     private IEnumerator ApplyBrush()
     {
-        // Штриховка на лице
         Vector3 start = handController.transform.position;
         float timer = 0f;
         float duration = 0.7f;

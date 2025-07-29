@@ -12,14 +12,12 @@ public abstract class MakeupTool : MonoBehaviour
 
     public virtual void OnToolSelected()
     {
-        // Если в руке уже другой инструмент
         if (handController.currentTool != null && handController.currentTool != this)
         {
             StartCoroutine(SwapAndSelect(handController.currentTool));
             return;
         }
-
-        // Если повторный выбор — вернуть обратно
+        
         if (isInUse)
         {
             handController.ResetHandAndTool(this);
@@ -31,13 +29,10 @@ public abstract class MakeupTool : MonoBehaviour
 
     private IEnumerator SwapAndSelect(MakeupTool oldTool)
     {
-        // Вернём старый инструмент
         yield return handController.ReturnToolWithHand(oldTool);
-
-        // Обнулим currentTool вручную, если ReturnTool этого не делает
+        
         handController.currentTool = null;
-
-        // Берём новый
+        
         TakeTool();
     }
 
@@ -56,9 +51,4 @@ public abstract class MakeupTool : MonoBehaviour
         transform.localPosition = originalLocalPosition;
     }
     
-    /*private IEnumerator SwapTools(MakeupTool oldTool)
-    {
-        yield return handController.ReturnToolWithHand(oldTool);
-        OnToolSelected(); // повторно вызвать себя уже после возврата
-    }*/
 }

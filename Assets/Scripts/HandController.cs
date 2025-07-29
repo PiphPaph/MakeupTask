@@ -8,7 +8,7 @@ public class HandController : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
     public Transform defaultPosition;
     public Transform middlePosition;
     public float moveSpeed = 4f;
-    public RectTransform faceZoneRect; // Перетащи сюда объект зоны лица
+    public RectTransform faceZoneRect;
 
     [HideInInspector] public MakeupTool currentTool;
     private bool isDragging = false;
@@ -20,7 +20,7 @@ public class HandController : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
     }
     public void SetToolInHand(MakeupTool tool)
     {
-        SetToolInHand(tool, null); // просто вызывает вторую версию без onMidReached
+        SetToolInHand(tool, null);
     }
 
     private IEnumerator MoveToToolRoutine(MakeupTool tool, System.Action onMidReached)
@@ -88,27 +88,6 @@ public class HandController : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
             yield return null;
         }
     }
-    /*public IEnumerator MoveToolBackSmoothly(MakeupTool tool)
-    {
-        Transform toolTransform = tool.transform;
-        toolTransform.SetParent(null); // отсоединяем от руки
-
-        Vector3 start = toolTransform.position;
-        Vector3 end = tool.originalParent.position;
-
-        float t = 0;
-        while (t < 1f)
-        {
-            toolTransform.position = Vector3.Lerp(start, end, t);
-            t += Time.deltaTime * moveSpeed;
-            yield return null;
-        }
-
-        toolTransform.SetParent(tool.originalParent);
-        toolTransform.localPosition = tool.originalLocalPosition;
-
-        tool.ReturnTool();
-    }*/
 
     public IEnumerator MoveToDefaultPosition()
     {
@@ -132,7 +111,7 @@ public class HandController : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
 
         tool.ReturnTool();
 
-        currentTool = null; // <--- ОБЯЗАТЕЛЬНО
+        currentTool = null;
     }
     public void EnableDragging(MakeupTool tool)
     {

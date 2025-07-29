@@ -14,7 +14,6 @@ public class Cream : MakeupTool
 
     private IEnumerator ApplyRoutine()
     {
-        // Анимация "вибрации" по X
         Vector3 startPos = handController.transform.position;
         float timer = 0;
 
@@ -25,18 +24,14 @@ public class Cream : MakeupTool
             timer += Time.deltaTime;
             yield return null;
         }
-
-        // Меняем спрайты
+        
         if (acneSprite != null) acneSprite.SetActive(false);
         if (cleanFaceSprite != null) cleanFaceSprite.SetActive(true);
-
-        // Рука ставит крем на место
+        
         yield return handController.ReturnToolWithHand(this);
-
-        // Потом уходит сама
+        
         yield return handController.MoveToDefaultPosition();
-
-        // Снимаем ссылку
+        
         handController.currentTool = null;
     }
 }

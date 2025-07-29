@@ -10,14 +10,12 @@ public class Lipstick : MakeupTool
 
     public override void OnToolSelected()
     {
-        // Если повторный клик — снять
         if (isInUse)
         {
             handController.ResetHandAndTool(this);
             return;
         }
-
-        // Если в руке другой инструмент — вернуть и потом взять этот
+        
         if (handController.currentTool != null && handController.currentTool != this)
         {
             StartCoroutine(SwapAndSelect(handController.currentTool));
