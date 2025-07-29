@@ -1,13 +1,29 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ColorButton : MonoBehaviour
 {
-    public Color color; // Цвет, который применяется (выбирается в инспекторе).
-    public BrushTool brushTool; // Ссылка на инструмент "Кисть".
+    public GameObject effectSprite;
 
-    public void OnClick()
+    private Button button;
+
+    void Awake()
     {
-        brushTool.selectedColor = color; // Передаем цвет в кисть.
-        // Дополнительно: можно менять цвет кисти визуально.
+        button = GetComponent<Button>();
+        button.onClick.AddListener(NotifyBrush);
+    }
+
+    void NotifyBrush()
+    {
+        // Найдём текущий инструмент в руке
+        HandController hand = FindObjectOfType<HandController>();
+        if (hand == null || hand.currentTool == null) return;
+
+        // Проверим, что это именно кисть
+        BrushTool brush = hand.currentTool as BrushTool;
+        if (brush != null)
+        {
+            brush.OnColorSelected(transform, effectSprite);
+        }
     }
 }

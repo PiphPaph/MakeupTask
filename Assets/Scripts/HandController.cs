@@ -13,18 +13,23 @@ public class HandController : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
     [HideInInspector] public MakeupTool currentTool;
     private bool isDragging = false;
 
-    public void SetToolInHand(MakeupTool tool)
+    public void SetToolInHand(MakeupTool tool, System.Action onMidReached)
     {
         currentTool = tool;
-        StartCoroutine(MoveToToolRoutine(tool));
+        StartCoroutine(MoveToToolRoutine(tool, onMidReached));
+    }
+    public void SetToolInHand(MakeupTool tool)
+    {
+        SetToolInHand(tool, null); // просто вызывает вторую версию без onMidReached
     }
 
-    private IEnumerator MoveToToolRoutine(MakeupTool tool)
+    private IEnumerator MoveToToolRoutine(MakeupTool tool, System.Action onMidReached)
     {
         yield return MoveToPosition(tool.transform.position);
         tool.transform.SetParent(toolHolder);
         tool.transform.localPosition = Vector3.zero;
         yield return MoveToPosition(middlePosition.position);
+        onMidReached?.Invoke();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -71,7 +76,7 @@ public class HandController : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
         currentTool = null;
     }
 
-    private IEnumerator MoveToPosition(Vector3 target)
+    public IEnumerator MoveToPosition(Vector3 target)
     {
         Vector3 start = transform.position;
         float t = 0;
@@ -83,7 +88,7 @@ public class HandController : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
             yield return null;
         }
     }
-    public IEnumerator MoveToolBackSmoothly(MakeupTool tool)
+    /*public IEnumerator MoveToolBackSmoothly(MakeupTool tool)
     {
         Transform toolTransform = tool.transform;
         toolTransform.SetParent(null); // отсоединяем от руки
@@ -103,7 +108,7 @@ public class HandController : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
         toolTransform.localPosition = tool.originalLocalPosition;
 
         tool.ReturnTool();
-    }
+    }*/
 
     public IEnumerator MoveToDefaultPosition()
     {
@@ -120,13 +125,19 @@ public class HandController : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
     }
     public IEnumerator ReturnToolWithHand(MakeupTool tool)
     {
-        // Едем туда, где изначально был инструмент
         yield return MoveToPosition(tool.originalParent.position);
 
-        // Отсоединяем инструмент от руки
         tool.transform.SetParent(tool.originalParent);
         tool.transform.localPosition = tool.originalLocalPosition;
 
         tool.ReturnTool();
+
+        currentTool = null; // <--- ОБЯЗАТЕЛЬНО
     }
+    public void EnableDragging(MakeupTool tool)
+    {
+        currentTool = tool;
+        isDragging = true;
+    }
+
 }

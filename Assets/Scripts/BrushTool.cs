@@ -1,61 +1,119 @@
-using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
+using UnityEngine;
 
 public class BrushTool : MakeupTool
 {
-    public Color selectedColor;
-    public Image brushTip;
+    private GameObject selectedEffectSprite;
+    private Transform selectedColorTransform;
+
+    private bool waitingForColor = false;
+    private bool draggingEnabled = false;
+    
+    private static GameObject currentEffectSprite; // новый
+
+    public override void OnToolSelected()
+    {
+        if (isInUse)
+        {
+            handController.ResetHandAndTool(this);
+            return;
+        }
+
+        // Если в руке другой инструмент — заменить
+        if (handController.currentTool != null && handController.currentTool != this)
+        {
+            StartCoroutine(SwapAndSelect(handController.currentTool));
+            return;
+        }
+
+        isInUse = true;
+        originalParent = transform.parent;
+        originalLocalPosition = transform.localPosition;
+
+        handController.SetToolInHand(this, () =>
+        {
+            waitingForColor = true;
+        });
+    }
+
+    private IEnumerator SwapAndSelect(MakeupTool oldTool)
+    {
+        yield return handController.ReturnToolWithHand(oldTool);
+        OnToolSelected();
+    }
+
+    public void OnColorSelected(Transform colorTransform, GameObject effectSprite)
+    {
+        if (!waitingForColor) return;
+        if (currentEffectSprite != null)
+            currentEffectSprite.SetActive(false);
+
+        selectedColorTransform = colorTransform;
+        selectedEffectSprite = effectSprite;
+
+        StopAllCoroutines();
+        StartCoroutine(AnimateBrushAtColor());
+    }
+   
+    private IEnumerator AnimateBrushAtColor()
+    {
+        yield return handController.MoveToPosition(selectedColorTransform.position);
+
+        // Штриховка
+        Vector3 start = handController.transform.position;
+        float time = 0;
+        float duration = 0.5f;
+
+        while (time < duration)
+        {
+            float offset = Mathf.Sin(time * 10f) * 5f;
+            handController.transform.position = start + new Vector3(offset, 0, 0);
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        yield return handController.MoveToPosition(handController.middlePosition.position);
+
+        if (!draggingEnabled)
+        {
+            handController.EnableDragging(this);
+            draggingEnabled = true;
+        }
+    }
 
     public override void ApplyEffect()
     {
-        StartCoroutine(ApplyShadowEffect());
+        if (selectedEffectSprite == null) return;
+
+        StartCoroutine(ApplyBrush());
     }
 
-    private IEnumerator ApplyShadowEffect()
+    private IEnumerator ApplyBrush()
     {
-        Vector3 startPos = handController.transform.position;
-        float timer = 0;
-        float applyTime = 1.2f;
+        // Штриховка на лице
+        Vector3 start = handController.transform.position;
+        float timer = 0f;
+        float duration = 0.7f;
 
-        while (timer < applyTime)
+        while (timer < duration)
         {
             float offset = Mathf.Sin(timer * 10f) * 10f;
-            handController.transform.position = startPos + new Vector3(offset, 0, 0);
+            handController.transform.position = start + new Vector3(offset, 0, 0);
             timer += Time.deltaTime;
             yield return null;
         }
 
-        /*foreach (var sprite in affectedSprites)
-        {
-            sprite.SetActive(true);
-            if (sprite.TryGetComponent(out Image img))
-                img.color = selectedColor;
-        }*/
+        selectedEffectSprite.SetActive(true);
+        currentEffectSprite = selectedEffectSprite;
 
-        StartCoroutine(ReturnToolSmooth());
-    }
+        yield return handController.ReturnToolWithHand(this);
+        yield return handController.MoveToDefaultPosition();
 
-    private IEnumerator ReturnToolSmooth()
-    {
-        Vector3 start = transform.position;
-        Vector3 end = originalParent.position;
-        float t = 0;
-
-        while (t < 1f)
-        {
-            transform.position = Vector3.Lerp(start, end, t);
-            t += Time.deltaTime * 2f;
-            yield return null;
-        }
-
-        transform.SetParent(originalParent);
-        transform.localPosition = originalLocalPosition;
-    }
-
-    public override void ReturnTool()
-    {
-        StopAllCoroutines();
-        StartCoroutine(ReturnToolSmooth());
+        handController.currentTool = null;
+        selectedEffectSprite = null;
+        selectedColorTransform = null;
+        waitingForColor = false;
+        draggingEnabled = false;
+        isInUse = false;
     }
 }
