@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 21778033}
   - component: {fileID: 21778032}
   - component: {fileID: 21778031}
+  - component: {fileID: 21778034}
   m_Layer: 5
   m_Name: Lipstick04
   m_TagString: Untagged
@@ -279,7 +280,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 21778032}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 21778034}
+        m_TargetAssemblyTypeName: MakeupTool, Assembly-CSharp
+        m_MethodName: OnToolSelected
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &21778032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -318,6 +331,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 21778029}
   m_CullTransparentMesh: 1
+--- !u!114 &21778034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21778029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7251518d86aea9943a295d17751a439c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handController: {fileID: 1253782896}
+  originalParent: {fileID: 0}
+  originalLocalPosition: {x: 0, y: 0, z: 0}
+  isInUse: 0
+  lipstickSprite: {fileID: 617595728}
+  applyTime: 1.2
 --- !u!1 &25517598
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,7 +510,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 29419551}
         m_TargetAssemblyTypeName: MakeupTool, Assembly-CSharp
-        m_MethodName: OnToolClicked
+        m_MethodName: OnToolSelected
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -540,10 +571,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handController: {fileID: 1253782896}
-  originalPosition: {fileID: 1484891960}
-  affectedSprites:
-  - {fileID: 1094242411}
-  isColorTool: 0
+  originalParent: {fileID: 0}
+  originalLocalPosition: {x: 0, y: 0, z: 0}
+  isInUse: 0
+  acneSprite: {fileID: 1094242411}
+  cleanFaceSprite: {fileID: 0}
+  applyTime: 1.2
 --- !u!1 &85945311
 GameObject:
   m_ObjectHideFlags: 0
@@ -1610,18 +1643,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handController: {fileID: 1253782896}
-  originalPosition: {fileID: 404073933}
-  affectedSprites:
-  - {fileID: 552504079}
-  - {fileID: 904501012}
-  - {fileID: 865850301}
-  - {fileID: 166311350}
-  - {fileID: 173275182}
-  - {fileID: 482563820}
-  - {fileID: 494204809}
-  - {fileID: 559173031}
-  - {fileID: 2073928561}
-  isColorTool: 0
+  originalParent: {fileID: 0}
+  originalLocalPosition: {x: 0, y: 0, z: 0}
+  isInUse: 0
   selectedColor: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 0}
   brushTip: {fileID: 404073935}
 --- !u!1 &436124939
@@ -2055,7 +2079,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &483467257
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5855,6 +5879,7 @@ GameObject:
   - component: {fileID: 976373666}
   - component: {fileID: 976373665}
   - component: {fileID: 976373664}
+  - component: {fileID: 976373667}
   m_Layer: 5
   m_Name: Lipstick01
   m_TagString: Untagged
@@ -5925,7 +5950,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 976373665}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 976373667}
+        m_TargetAssemblyTypeName: MakeupTool, Assembly-CSharp
+        m_MethodName: OnToolSelected
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &976373665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5964,6 +6001,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 976373662}
   m_CullTransparentMesh: 1
+--- !u!114 &976373667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 976373662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7251518d86aea9943a295d17751a439c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handController: {fileID: 1253782896}
+  originalParent: {fileID: 0}
+  originalLocalPosition: {x: 0, y: 0, z: 0}
+  isInUse: 0
+  lipstickSprite: {fileID: 216850825}
+  applyTime: 1.2
 --- !u!1 &1003479590
 GameObject:
   m_ObjectHideFlags: 0
@@ -6025,6 +6080,7 @@ GameObject:
   - component: {fileID: 1011111620}
   - component: {fileID: 1011111619}
   - component: {fileID: 1011111618}
+  - component: {fileID: 1011111621}
   m_Layer: 5
   m_Name: Lipstick03
   m_TagString: Untagged
@@ -6095,7 +6151,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1011111619}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1011111621}
+        m_TargetAssemblyTypeName: MakeupTool, Assembly-CSharp
+        m_MethodName: OnToolSelected
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1011111619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6134,6 +6202,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1011111616}
   m_CullTransparentMesh: 1
+--- !u!114 &1011111621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011111616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7251518d86aea9943a295d17751a439c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handController: {fileID: 1253782896}
+  originalParent: {fileID: 0}
+  originalLocalPosition: {x: 0, y: 0, z: 0}
+  isInUse: 0
+  lipstickSprite: {fileID: 910592702}
+  applyTime: 1.2
 --- !u!1 &1083679982
 GameObject:
   m_ObjectHideFlags: 0
@@ -7012,6 +7098,7 @@ GameObject:
   - component: {fileID: 1204569959}
   - component: {fileID: 1204569958}
   - component: {fileID: 1204569957}
+  - component: {fileID: 1204569960}
   m_Layer: 5
   m_Name: Lipstick02
   m_TagString: Untagged
@@ -7082,7 +7169,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1204569958}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1204569960}
+        m_TargetAssemblyTypeName: MakeupTool, Assembly-CSharp
+        m_MethodName: OnToolSelected
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1204569958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7121,6 +7220,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1204569955}
   m_CullTransparentMesh: 1
+--- !u!114 &1204569960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1204569955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7251518d86aea9943a295d17751a439c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handController: {fileID: 1253782896}
+  originalParent: {fileID: 0}
+  originalLocalPosition: {x: 0, y: 0, z: 0}
+  isInUse: 0
+  lipstickSprite: {fileID: 270060387}
+  applyTime: 1.2
 --- !u!1 &1238270238
 GameObject:
   m_ObjectHideFlags: 0
@@ -7407,6 +7524,8 @@ GameObject:
   - component: {fileID: 1253782892}
   - component: {fileID: 1253782895}
   - component: {fileID: 1253782896}
+  - component: {fileID: 1253782897}
+  - component: {fileID: 1253782898}
   m_Layer: 5
   m_Name: Hand
   m_TagString: Hand
@@ -7496,14 +7615,70 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a53a700da9a0f349b144af41eaaa1c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handImage: {fileID: 1253782892}
-  defaultPosition: {fileID: 1472560458}
-  midPosition: {fileID: 85945312}
   toolHolder: {fileID: 1531710237}
-  moveSpeed: 5
+  defaultPosition: {fileID: 1472560458}
+  middlePosition: {fileID: 85945312}
+  moveSpeed: 1.98
+  faceZoneRect: {fileID: 1286117160}
   currentTool: {fileID: 0}
-  isDragging: 0
-  isReturning: 0
+--- !u!61 &1253782897
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253782890}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &1253782898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253782890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
 --- !u!1 &1285065921
 GameObject:
   m_ObjectHideFlags: 0
@@ -7639,9 +7814,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handController: {fileID: 1253782896}
-  originalPosition: {fileID: 1285065922}
-  affectedSprites: []
-  isColorTool: 0
+  originalParent: {fileID: 0}
+  originalLocalPosition: {x: 0, y: 0, z: 0}
+  isInUse: 0
   Acne: {fileID: 1094242411}
 --- !u!1 &1286117159
 GameObject:
@@ -7654,6 +7829,7 @@ GameObject:
   - component: {fileID: 1286117160}
   - component: {fileID: 1286117162}
   - component: {fileID: 1286117161}
+  - component: {fileID: 1286117163}
   m_Layer: 5
   m_Name: FaceZone
   m_TagString: FaceZone
@@ -7718,6 +7894,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1286117159}
   m_CullTransparentMesh: 1
+--- !u!61 &1286117163
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286117159}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1317740019
 GameObject:
   m_ObjectHideFlags: 0
@@ -9735,6 +9956,7 @@ GameObject:
   - component: {fileID: 1730955977}
   - component: {fileID: 1730955976}
   - component: {fileID: 1730955975}
+  - component: {fileID: 1730955978}
   m_Layer: 5
   m_Name: Lipstick05
   m_TagString: Untagged
@@ -9805,7 +10027,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1730955976}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1730955978}
+        m_TargetAssemblyTypeName: MakeupTool, Assembly-CSharp
+        m_MethodName: OnToolSelected
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1730955976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9844,6 +10078,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1730955973}
   m_CullTransparentMesh: 1
+--- !u!114 &1730955978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1730955973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7251518d86aea9943a295d17751a439c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handController: {fileID: 1253782896}
+  originalParent: {fileID: 0}
+  originalLocalPosition: {x: 0, y: 0, z: 0}
+  isInUse: 0
+  lipstickSprite: {fileID: 1890425017}
+  applyTime: 1.2
 --- !u!1 &1732664217
 GameObject:
   m_ObjectHideFlags: 0
@@ -12077,6 +12329,7 @@ GameObject:
   - component: {fileID: 2099899478}
   - component: {fileID: 2099899477}
   - component: {fileID: 2099899476}
+  - component: {fileID: 2099899479}
   m_Layer: 5
   m_Name: Lipstick06
   m_TagString: Untagged
@@ -12147,7 +12400,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2099899477}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2099899479}
+        m_TargetAssemblyTypeName: MakeupTool, Assembly-CSharp
+        m_MethodName: OnToolSelected
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2099899477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12186,6 +12451,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2099899474}
   m_CullTransparentMesh: 1
+--- !u!114 &2099899479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2099899474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7251518d86aea9943a295d17751a439c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handController: {fileID: 1253782896}
+  originalParent: {fileID: 0}
+  originalLocalPosition: {x: 0, y: 0, z: 0}
+  isInUse: 0
+  lipstickSprite: {fileID: 159772586}
+  applyTime: 1.2
 --- !u!1 &2117442690
 GameObject:
   m_ObjectHideFlags: 0

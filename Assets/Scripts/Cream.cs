@@ -1,45 +1,42 @@
 using System.Collections;
 using UnityEngine;
 
-public class Cream : MakeupTool 
+public class Cream : MakeupTool
 {
-    public float applyTime = 1.5f;
-    private bool isApplying;
+    public GameObject acneSprite;
+    public GameObject cleanFaceSprite;
+    public float applyTime = 1.2f;
 
     public override void ApplyEffect()
     {
-        if (isApplying) return;
-        StartCoroutine(ApplyAnimation());
+        StartCoroutine(ApplyRoutine());
     }
 
-    private IEnumerator ApplyAnimation()
+    private IEnumerator ApplyRoutine()
     {
-        isApplying = true;
-        
-        // 1. Анимация движения руки (горизонтальные колебания)
+        // Анимация "вибрации" по X
         Vector3 startPos = handController.transform.position;
         float timer = 0;
-        
+
         while (timer < applyTime)
         {
-            float offset = Mathf.Sin(timer * 8f) * 15f; // 8 - скорость, 15 - амплитуда
+            float offset = Mathf.Sin(timer * 10f) * 10f;
             handController.transform.position = startPos + new Vector3(offset, 0, 0);
             timer += Time.deltaTime;
             yield return null;
         }
 
-        // 2. Применяем эффект
-        affectedSprites[0].SetActive(false);
-        
-        // 3. Возвращаем руку и инструмент
-        handController.ReturnToDefault();
-        isApplying = false;
-    }
+        // Меняем спрайты
+        if (acneSprite != null) acneSprite.SetActive(false);
+        if (cleanFaceSprite != null) cleanFaceSprite.SetActive(true);
 
-    public override void ReturnTool()
-    {
-        // Жесткий возврат на место без Lerp
-        transform.SetParent(originalParent);
-        transform.localPosition = originalLocalPosition;
+        // Рука ставит крем на место
+        yield return handController.ReturnToolWithHand(this);
+
+        // Потом уходит сама
+        yield return handController.MoveToDefaultPosition();
+
+        // Снимаем ссылку
+        handController.currentTool = null;
     }
 }

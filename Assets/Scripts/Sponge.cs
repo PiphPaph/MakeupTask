@@ -6,8 +6,8 @@ public class SpongeTool : MakeupTool
 
     public override void ApplyEffect()
     {
-        base.ApplyEffect();
+        /*base.ApplyEffect();
         Acne.SetActive(true);
-        handController.ReturnToDefault();
+        handController.ReturnToDefault();*/
     }
 }
