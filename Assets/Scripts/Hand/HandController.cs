@@ -4,14 +4,14 @@ using UnityEngine.EventSystems;
 
 public class HandController : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
-    public Transform toolHolder;
-    public Transform defaultPosition;
-    public Transform middlePosition;
-    public float moveSpeed = 4f;
-    public RectTransform faceZoneRect;
+    public Transform toolHolder; // пустой дочерний объект руки, где должен быть выбранный инструмент
+    public Transform defaultPosition; // дефолтная позиция руки, куда она должна возвращаться
+    public Transform middlePosition; // позиция руки куда она приходит после выбора инструмента
+    public float moveSpeed = 4f; // скорость передвижения руки
+    public RectTransform faceZoneRect; // пустой объект зоны лица
 
-    [HideInInspector] public MakeupTool currentTool;
-    private bool isDragging = false;
+    [HideInInspector] public MakeupTool currentTool; // выбранный инструмент
+    private bool _isDragging;
 
     public void SetToolInHand(MakeupTool tool, System.Action onMidReached)
     {
@@ -25,21 +25,21 @@ public class HandController : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
 
     private IEnumerator MoveToToolRoutine(MakeupTool tool, System.Action onMidReached)
     {
-        yield return MoveToPosition(tool.transform.position);
-        tool.transform.SetParent(toolHolder);
-        tool.transform.localPosition = Vector3.zero;
-        yield return MoveToPosition(middlePosition.position);
+        yield return MoveToPosition(tool.transform.position); // перемещение к выбранному тулзу
+        tool.transform.SetParent(toolHolder); // изменение родителя тулза на держатель
+        tool.transform.localPosition = Vector3.zero; // центровка тулза относительно нового родителя
+        yield return MoveToPosition(middlePosition.position); // перемещение руки в мид позицию
         onMidReached?.Invoke();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (currentTool != null) isDragging = true;
+        if (currentTool != null) _isDragging = true;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (!isDragging) return;
+        if (!_isDragging) return;
 
         Vector3 worldPos;
         if (RectTransformUtility.ScreenPointToWorldPointInRectangle(
@@ -51,8 +51,6 @@ public class HandController : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (!isDragging) return;
-        isDragging = false;
 
         if (IsInFaceZone())
             currentTool.ApplyEffect();
@@ -69,11 +67,11 @@ public class HandController : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
         );
     }
 
-    public IEnumerator ResetHandAndTool(MakeupTool tool)
+    public IEnumerator ResetHandAndTool(MakeupTool tool) 
     {
-        tool.ReturnTool();
-        yield return MoveToPosition(defaultPosition.position);
-        currentTool = null;
+        tool.ReturnTool(); // возврат тулза на место
+        yield return MoveToPosition(defaultPosition.position); // перемещение руки в дефолтную позицию
+        currentTool = null; // очистка текущего выбранного тулза
     }
 
     public IEnumerator MoveToPosition(Vector3 target)
@@ -116,7 +114,7 @@ public class HandController : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
     public void EnableDragging(MakeupTool tool)
     {
         currentTool = tool;
-        isDragging = true;
+        _isDragging = true;
     }
 
 }

@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class SpongeTool : MakeupTool
+public class Sponge : MakeupTool
 {
     public GameObject[] allMakeupSpritesToClear;
     public GameObject acne;
@@ -13,12 +13,6 @@ public class SpongeTool : MakeupTool
 
     public override void OnToolSelected()
     {
-        if (isInUse)
-        {
-            handController.ResetHandAndTool(this);
-            return;
-        }
-
         isInUse = true;
         originalParent = transform.parent;
         originalLocalPosition = transform.localPosition;

@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class TabGroup : MonoBehaviour
 {
+    // список всех вкладок, висит на пустом отдельном объекте
     public List<BookTabButton> tabButtons;
 
     public void OnTabSelected(BookTabButton selected)

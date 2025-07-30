@@ -6,7 +6,7 @@ public abstract class MakeupTool : MonoBehaviour
     [SerializeField] public HandController handController;
     [HideInInspector] public Transform originalParent;
     [HideInInspector] public Vector3 originalLocalPosition;
-    [HideInInspector] public bool isInUse = false;
+    [HideInInspector] public bool isInUse;
 
     public abstract void ApplyEffect();
 
@@ -15,12 +15,6 @@ public abstract class MakeupTool : MonoBehaviour
         if (handController.currentTool != null && handController.currentTool != this)
         {
             StartCoroutine(SwapAndSelect(handController.currentTool));
-            return;
-        }
-        
-        if (isInUse)
-        {
-            handController.ResetHandAndTool(this);
             return;
         }
 
@@ -36,7 +30,7 @@ public abstract class MakeupTool : MonoBehaviour
         TakeTool();
     }
 
-    protected virtual void TakeTool()
+    private void TakeTool()
     {
         isInUse = true;
         originalParent = transform.parent;
@@ -44,7 +38,7 @@ public abstract class MakeupTool : MonoBehaviour
         handController.SetToolInHand(this);
     }
 
-    public virtual void ReturnTool()
+    public void ReturnTool()
     {
         isInUse = false;
         transform.SetParent(originalParent);

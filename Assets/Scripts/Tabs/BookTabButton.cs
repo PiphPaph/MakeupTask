@@ -3,10 +3,10 @@ using UnityEngine.UI;
 
 public class BookTabButton : MonoBehaviour
 {
-    public GameObject pageToShow;         // нужная страница
-    public Sprite activeSprite;           // "включённая" вкладка
-    public Sprite inactiveSprite;         // обычная вкладка
-    public Image targetImage;             // чей Image меняем (например, фон кнопки)
+    public GameObject pageToShow;         // лист для активации
+    public Sprite activeSprite;           // "активированная" вкладка (красная)"
+    public Sprite inactiveSprite;         // "не активированаая" вкладка (синяя)
+    public Image targetImage;             // Image в инспекторе, чтобы менять картинку
     public TabGroup tabGroup;             // ссылка на общий контроллер
 
     private void Awake()

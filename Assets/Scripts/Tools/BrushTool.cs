@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class BrushTool : MakeupTool
 {
-    private GameObject selectedEffectSprite;
-    private Transform selectedColorTransform;
+    private GameObject _selectedEffectSprite;
+    private Transform _selectedColorTransform;
 
-    private bool waitingForColor = false;
-    private bool draggingEnabled = false;
+    private bool _waitingForColor;
+    private bool _draggingEnabled;
     
-    private static GameObject currentEffectSprite;
+    private static GameObject _currentEffectSprite;
 
     public override void OnToolSelected()
     {
@@ -31,7 +31,7 @@ public class BrushTool : MakeupTool
 
         handController.SetToolInHand(this, () =>
         {
-            waitingForColor = true;
+            _waitingForColor = true;
         });
     }
 
@@ -43,12 +43,12 @@ public class BrushTool : MakeupTool
 
     public void OnColorSelected(Transform colorTransform, GameObject effectSprite)
     {
-        if (!waitingForColor) return;
-        if (currentEffectSprite != null)
-            currentEffectSprite.SetActive(false);
+        if (!_waitingForColor) return;
+        if (_currentEffectSprite != null)
+            _currentEffectSprite.SetActive(false);
 
-        selectedColorTransform = colorTransform;
-        selectedEffectSprite = effectSprite;
+        _selectedColorTransform = colorTransform;
+        _selectedEffectSprite = effectSprite;
 
         StopAllCoroutines();
         StartCoroutine(AnimateBrushAtColor());
@@ -56,7 +56,7 @@ public class BrushTool : MakeupTool
    
     private IEnumerator AnimateBrushAtColor()
     {
-        yield return handController.MoveToPosition(selectedColorTransform.position);
+        yield return handController.MoveToPosition(_selectedColorTransform.position);
         
         Vector3 start = handController.transform.position;
         float time = 0;
@@ -72,16 +72,16 @@ public class BrushTool : MakeupTool
 
         yield return handController.MoveToPosition(handController.middlePosition.position);
 
-        if (!draggingEnabled)
+        if (!_draggingEnabled)
         {
             handController.EnableDragging(this);
-            draggingEnabled = true;
+            _draggingEnabled = true;
         }
     }
 
     public override void ApplyEffect()
     {
-        if (selectedEffectSprite == null) return;
+        if (_selectedEffectSprite == null) return;
 
         StartCoroutine(ApplyBrush());
     }
@@ -100,17 +100,17 @@ public class BrushTool : MakeupTool
             yield return null;
         }
 
-        selectedEffectSprite.SetActive(true);
-        currentEffectSprite = selectedEffectSprite;
+        _selectedEffectSprite.SetActive(true);
+        _currentEffectSprite = _selectedEffectSprite;
 
         yield return handController.ReturnToolWithHand(this);
         yield return handController.MoveToDefaultPosition();
 
         handController.currentTool = null;
-        selectedEffectSprite = null;
-        selectedColorTransform = null;
-        waitingForColor = false;
-        draggingEnabled = false;
+        _selectedEffectSprite = null;
+        _selectedColorTransform = null;
+        _waitingForColor = false;
+        _draggingEnabled = false;
         isInUse = false;
     }
 }

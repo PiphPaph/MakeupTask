@@ -4,17 +4,12 @@ using UnityEngine;
 public class Lipstick : MakeupTool
 {
     public GameObject lipstickSprite;
-    public static GameObject currentLipstickSprite;
+    private static GameObject _currentLipstickSprite;
 
     public float applyTime = 1.2f;
 
     public override void OnToolSelected()
     {
-        if (isInUse)
-        {
-            handController.ResetHandAndTool(this);
-            return;
-        }
         
         if (handController.currentTool != null && handController.currentTool != this)
         {
@@ -53,13 +48,13 @@ public class Lipstick : MakeupTool
             yield return null;
         }
 
-        if (currentLipstickSprite != null)
-            currentLipstickSprite.SetActive(false);
+        if (_currentLipstickSprite != null)
+            _currentLipstickSprite.SetActive(false);
 
         if (lipstickSprite != null)
         {
             lipstickSprite.SetActive(true);
-            currentLipstickSprite = lipstickSprite;
+            _currentLipstickSprite = lipstickSprite;
         }
 
         yield return handController.ReturnToolWithHand(this);
